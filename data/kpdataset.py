@@ -21,8 +21,7 @@ class SeqKeypointDataset(Dataset):
 
     def __getitem__(self, idx):
         key = self.keys[idx]
-        print(key)
-        # print(key)
+
         # img = cv2.imread(f'./frames/{key.split("_")[0]}_cond3_{key.split("_")[1]}/frame_{int(key.split("_")[2]):04d}.jpg', cv2.IMREAD_GRAYSCALE)
         frames = []
         p = 1
