@@ -10,9 +10,5 @@ us_processed_March/
 us_annotation_March/
 __pycache__/
 us_processing/
-us_annotation_Cady_normal.json
-us_annotation_Cady.json
-us_annotation_March_normal.json
-us_annotation_March.json
 *.mp4
 *.mkv
