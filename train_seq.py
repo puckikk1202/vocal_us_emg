@@ -45,7 +45,7 @@ def draw_img(img, keypoint, gt_keypoint):
 with open('us_annotation_Cady_normal.json', 'r') as f:
     normalized_data = json.load(f)
 
-seq_len = 9
+seq_len = 15
 dataset = SeqKeypointDataset(normalized_data, seq_len=seq_len)
 
 train_size = int(0.8 * len(dataset))
@@ -53,8 +53,8 @@ test_size = len(dataset) - train_size
 
 train_dataset, test_dataset = random_split(dataset, [train_size, test_size])
 
-train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-test_loader = DataLoader(test_dataset, batch_size=8, shuffle=False)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
 
 
 # model = ResNet101(num_classes=10, channels=1).cuda()
@@ -78,8 +78,6 @@ model= ViT(
 optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
 criterion = nn.MSELoss()
 wandb.watch(model, log_freq=100)
-
-
 
 for epoch in range(300):
     for i, (kp, img) in enumerate(train_loader):
