@@ -45,7 +45,7 @@ def draw_img(img, keypoint, gt_keypoint):
 with open('us_annotation_Cady_normal.json', 'r') as f:
     normalized_data = json.load(f)
 
-seq_len = 5
+seq_len = 9
 dataset = SeqKeypointDataset(normalized_data, seq_len=seq_len)
 
 train_size = int(0.8 * len(dataset))
@@ -63,16 +63,16 @@ test_loader = DataLoader(test_dataset, batch_size=8, shuffle=False)
 
 model= ViT(
     image_size = 512,          # image size
-    frames = 5,               # number of frames
-    image_patch_size = 16,     # image patch size
-    frame_patch_size = 5,      # frame patch size
+    frames = seq_len,               # number of frames
+    image_patch_size = 64,     # image patch size
+    frame_patch_size = 3,      # frame patch size
     num_classes = 10,
     channels = 1,              # number of image channels
     dim = 1024,
     spatial_depth = 6,         # depth of the spatial transformer
     temporal_depth = 6,        # depth of the temporal transformer
     heads = 8,
-    mlp_dim = 2048,
+    mlp_dim = 1024,
 ).cuda()
 
 optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
@@ -81,7 +81,7 @@ wandb.watch(model, log_freq=100)
 
 
 
-for epoch in range(100):
+for epoch in range(300):
     for i, (kp, img) in enumerate(train_loader):
         model.train()
         kp = kp.cuda()
@@ -127,7 +127,7 @@ for epoch in range(100):
             # writer.add_images('Images/test', result_imgs_tensor, epoch * len(test_loader) + i)
 
     del kp, img, output, loss
-    print(f'Test Loss: {loss.item()}')
+
 wandb.finish()
 torch.save(model.state_dict(), f'../output_models/Cady_model_seq_{epoch}.pth')
 
