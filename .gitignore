@@ -10,5 +10,6 @@ us_processed_March/
 us_annotation_March/
 __pycache__/
 us_processing/
+audio_vqvae_models/
 *.mp4
 *.mkv

@@ -71,8 +71,8 @@ segment_duration_ms = 25  # Desired sequence length
 # Create dataset and dataloader
 train_dataset = AudioDataset(audio_directory,  segment_duration_ms)
 test_dataset = AudioDataset(audio_directory, segment_duration_ms, is_test=True)
-train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True, collate_fn=collate_fn)
-test_loader = DataLoader(test_dataset, batch_size=8, shuffle=False, collate_fn=collate_fn)
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True, collate_fn=collate_fn)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False, collate_fn=collate_fn)
 
 args = get_parser()
 model = get_model(args).to("cuda:1")
