@@ -46,3 +46,4 @@ TRAIN:
   resume:
   evaluate: True  # evaluate on validation set, extra gpu memory needed and small batch_size_val is recommend
   eval_freq: 10
+  quant_loss_weight: 1
