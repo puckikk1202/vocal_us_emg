@@ -10,7 +10,7 @@ from model.utils import get_parser
 from model.loss import calc_vq_loss
 import wandb
 
-wandb.init(project='vocal_us_emg')
+# wandb.init(project='vocal_us_emg')
 def get_model(cfg):
     ## old
     if cfg.arch == 'vocal_stage1':
@@ -79,7 +79,7 @@ model = get_model(args).to("cuda:1")
 optimizer = torch.optim.AdamW(model.parameters(), lr=args.base_lr)
 scheduler = StepLR(optimizer, step_size=args.step_size, gamma=args.gamma)
 
-wandb.watch(model)
+# wandb.watch(model)
 
 # Iterate over the dataloader
 best_loss = float('inf')
@@ -90,7 +90,7 @@ for epoch in range(args.epochs):
         model.train()
 
         data = data.to("cuda:1")
-
+        print(data.shape)
         out, quant_loss, info = model(data)
         # print('emb_loss', quant_loss)
 

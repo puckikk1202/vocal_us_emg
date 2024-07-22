@@ -41,7 +41,7 @@ class VQAutoEncoder(BaseModel):
         # template = template.unsqueeze(1) #B,V*3 -> B, 1, V*3
         # x = x - template
 
-        ###x.shape: [B, L C]
+        ###x.shape: [B, L, C]
         quant, emb_loss, info = self.encode(x)
         ### quant [B, C, L]
         dec = self.decode(quant)
