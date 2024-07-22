@@ -56,7 +56,6 @@ train_dataset, test_dataset = random_split(dataset, [train_size, test_size])
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=16, shuffle=False)
 
-
 # model = ResNet101(num_classes=10, channels=1).cuda()
 # optimizer = torch.optim.Adam(model.parameters(), lr=3e-5)
 # criterion = nn.MSELoss()
@@ -74,6 +73,7 @@ model= ViT(
     heads = 8,
     mlp_dim = 1024,
 ).cuda()
+
 
 optimizer = torch.optim.Adam(model.parameters(), lr=2e-5)
 criterion = nn.MSELoss()

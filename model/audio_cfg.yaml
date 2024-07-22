@@ -1,6 +1,6 @@
 NETWORK:
   arch: vocal_stage1
-  in_dim: 400
+  in_dim: 4000
   hidden_size: 1024
   num_hidden_layers: 6
   num_attention_heads: 8

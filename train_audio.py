@@ -66,7 +66,7 @@ def collate_fn(batch):
 
 # Parameters
 audio_directory = '../us_raw_audio'
-segment_duration_ms = 25  # Desired sequence length
+segment_duration_ms = 250  # Desired sequence length
 
 # Create dataset and dataloader
 train_dataset = AudioDataset(audio_directory,  segment_duration_ms)
